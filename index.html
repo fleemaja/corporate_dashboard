@@ -9,21 +9,20 @@
 
   <body ng-app="corporateDashboard">
     <div ng-controller="viewController">
-      <button ng-click="setPagename('/geospatial')">geospatial</button>
-      <button ng-click="setPagename('/metrics')">metrics</button>
-      <button ng-click="setPagename('/data')">data</button>
+      <button ng-click="setPagename('/geospatial')" class="view-tab">geospatial</button>
+      <button ng-click="setPagename('/metrics')" class="view-tab">metrics</button>
+      <button ng-click="setPagename('/data')" class="view-tab">data</button>
       <hr/>
       <div ng-switch on="getPagename()">
-          <div ng-switch-when="/geospatial">
-            <ng-include src="'templates/geospatial.html'"></ng-include>
-          </div>
           <div ng-switch-when="/metrics">
             <ng-include src="'templates/metrics.html'"></ng-include>
           </div>
           <div ng-switch-when="/data">
             <ng-include src="'templates/data.html'"></ng-include>
           </div>
-          <div ng-switch-default>Welcome!</div>
+          <div ng-switch-default>
+            <ng-include src="'templates/geospatial.html'"></ng-include>
+          </div>
       </div>
     </div>
 
