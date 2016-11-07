@@ -1,8 +1,9 @@
 (function(angular) {
   'use strict';
   angular.module('corporateDashboard', ['ngAnimate'])
-    .controller('viewController', ['$scope', function($scope) {
+    .controller('viewController', ['$scope', '$location', function($scope, $location) {
       $scope.items = ['geospatial', 'metrics', 'data'];
-      $scope.selection = $scope.items[0];
+      $scope.setPagename = function(path) { $location.path(path); };
+      $scope.getPagename = function() { return $location.path(); }
     }]);
 })(window.angular);
