@@ -1,1 +1,1 @@
-Corporate Dashboard demo built with Angular & D3.
+Corporate Dashboard demo made with the Angular front-end framework and the d3 data visualization library.

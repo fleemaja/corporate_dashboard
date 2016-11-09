@@ -1,3 +1,31 @@
+body {
+  text-align: center;
+  font-family: "Helvetica", Arial, sans-serif;
+}
+
+#content {
+  margin-top: 40px;
+}
+
+button {
+  font-size: 16px;
+  border: 2px solid green;
+  background: white;
+  padding: 5px;
+  margin: 5px;
+}
+
+button:hover {
+  background: green;
+  color: white;
+}
+
+header {
+  font-size: 42px;
+  font-weight: 900;
+  margin: 20px 0;
+}
+
 .view-tab {
     cursor: pointer;
 }
