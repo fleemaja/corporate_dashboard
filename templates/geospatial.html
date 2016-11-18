@@ -1,3 +1,11 @@
-<div>
-  Geospatial
+<div id="options">
+  <button ng-click="setPagename('/geospatial')" class="view-tab active-tab">geospatial</button>
+  <button ng-click="setPagename('/metrics')" class="view-tab">metrics</button>
+  <button ng-click="setPagename('/data')" class="view-tab">data</button>
+</div>
+
+<div class="container-fluid">
+  <div ng-controller="MainCtrl">
+    <location-map data="donutData1"></location-map>
+  </div>
 </div>

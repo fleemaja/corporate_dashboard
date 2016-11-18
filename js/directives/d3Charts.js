@@ -35,8 +35,6 @@
 
           // define render function
           scope.render = function(data){
-            // remove all previous items before render
-            svg.selectAll("*").remove();
 
             // setup variables
             var width, height, max;
@@ -121,8 +119,6 @@
 
           // define render function
           scope.render = function(data){
-            // remove all previous items before render
-            svg.selectAll("*").remove();
 
             // Parse the date / time
             var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -144,7 +140,7 @@
                 .y(function(d) { return y(d.close); });
 
             // Get the data
-            d3.csv("data.csv", function(error, data) {
+            d3.csv("./data/data.csv", function(error, data) {
                 data.forEach(function(d) {
                     d.date = parseDate(d.date);
                     d.close = +d.close;
@@ -171,6 +167,77 @@
                     .call(yAxis);
 
             });
+
+          };
+        }
+      };
+    }])
+    .directive('locationMap', ['d3', function(d3) {
+      return {
+        restrict: 'E',
+        scope: {
+          data: "="
+        },
+        link: function(scope, iElement, iAttrs) {
+          // Set the dimensions of the canvas / graph
+          var margin = {top: 30, right: 20, bottom: 30, left: 50},
+              width = 900 - margin.left - margin.right,
+              height = 600 - margin.top - margin.bottom;
+          // Adds the svg canvas
+          var svg = d3.select(iElement[0])
+              .append("svg")
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                  .attr("transform",
+                        "translate(" + margin.left + "," + margin.top + ")");
+
+          // on window resize, re-render d3 canvas
+          window.onresize = function() {
+            return scope.$apply();
+          };
+          scope.$watch(function(){
+              return angular.element(window)[0].innerWidth;
+            }, function(){
+              return scope.render(scope.data);
+            }
+          );
+
+          // watch for data changes and re-render
+          scope.$watch('data', function(newVals, oldVals) {
+            return scope.render(newVals);
+          }, true);
+
+          // define render function
+          scope.render = function(data){
+
+            var projection = d3.geo.mercator()
+                .center([0, 5])
+                .scale(200);
+
+            var path = d3.geo.path()
+                .projection(projection);
+
+            var g = svg.append("g");
+
+            g.selectAll("path")
+                  .data(topojson.object(data, data.objects.countries)
+                      .geometries)
+                .enter()
+                  .append("path")
+                  .attr("d", path)
+
+            // zoom and pan
+            var zoom = d3.behavior.zoom()
+                .on("zoom",function() {
+                    g.attr("transform","translate("+
+                        d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+                    g.selectAll("path")
+                        .attr("d", path.projection(projection));
+
+              });
+
+            svg.call(zoom)
 
           };
         }

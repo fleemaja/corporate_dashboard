@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
   var corporateDashboard = angular.module('corporateDashboard',
-      ['ngAnimate',
+      ['ngAnimate', 'ui.bootstrap', 'ngResource',
       'corporateDashboard.controllers', 'corporateDashboard.directives']
     );
 
@@ -10,8 +10,4 @@
   angular.module('corporateDashboard.controllers', []);
   angular.module('corporateDashboard.directives', ['d3']);
 
-  corporateDashboard.controller('viewController', ['$scope', '$location', function($scope, $location) {
-      $scope.setPagename = function(path) { $location.path(path); };
-      $scope.getPagename = function() { return $location.path(); }
-    }]);
 })(window.angular);

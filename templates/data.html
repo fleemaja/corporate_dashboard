@@ -1,3 +1,28 @@
-<div ng-controller="lineCtrl">
-  <d3-lines data="d3Data" label="name"></d3-lines>
+<div id="options">
+  <button ng-click="setPagename('/geospatial')" class="view-tab">geospatial</button>
+  <button ng-click="setPagename('/metrics')" class="view-tab">metrics</button>
+  <button ng-click="setPagename('/data')" class="view-tab active-tab">data</button>
+</div>
+
+<div class="container-fluid">
+  <div ng-controller="issuesCtrl">
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="obj in objects | filter : paginate">
+          <td>{{obj.id}}</td>
+          <td>{{obj.title}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination total-items="totalItems" ng-model="currentPage"
+      max-size="10" boundary-links="true"
+      items-per-page="numPerPage" class="pagination-sm">
+    </pagination>
+  </div>
 </div>

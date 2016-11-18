@@ -4,26 +4,50 @@ body {
 }
 
 #content {
-  margin-top: 40px;
+  margin: 20px 0px;
 }
 
 button {
-  font-size: 16px;
-  border: 2px solid green;
+  font-size: 18px;
+  height: 48px;
+  border: 2px solid steelblue;
   background: white;
-  padding: 5px;
-  margin: 5px;
+  padding: 0px 10px;
+  margin: 0px 10px;
+  box-shadow: 7px 7px 5px #aaa;
 }
 
-button:hover {
-  background: green;
+tweet-map{
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+tweet-map .boundary{
+  fill: none;
+  stroke: white;
+}
+
+.active-tab {
+  background: steelblue;
   color: white;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background: lightsteelblue;
+  color: black;
 }
 
 header {
   font-size: 42px;
   font-weight: 900;
-  margin: 20px 0;
+}
+
+.container-fluid {
+  max-width: 90%;
+  margin-top: 40px;
 }
 
 .view-tab {
@@ -34,6 +58,16 @@ header {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
+}
+
+rect {
+  fill: steelblue;
+}
+
+path {
+  stroke: #E0E0E0;
+  stroke-width: 1px;
+  fill: #636363;
 }
 
 .axis path,
