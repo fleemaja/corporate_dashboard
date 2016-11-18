@@ -44,6 +44,7 @@
       // using success/error callback style
       $http.get('https://gist.githubusercontent.com/abenrob/787723ca91772591b47e/raw/8a7f176072d508218e120773943b595c998991be/world-50m.json').success(function(data){
         $scope.mapData = data;
+        $('.loader').hide();
       }).error(function(err){
         throw err;
       });
