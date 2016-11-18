@@ -1,0 +1,58 @@
+[
+  {
+    "city": "New York City",
+    "coordinates": [
+      40.712784,
+      -74.005941
+    ],
+    "numberOfEmployees": 674
+  },
+  {
+    "city": "Los Angeles",
+    "coordinates": [
+      34.052234,
+      -118.243685
+    ],
+    "numberOfEmployees": 343
+  },
+  {
+    "city": "Austin",
+    "coordinates": [
+      30.267153,
+      -97.743061
+    ],
+    "numberOfEmployees": 155
+  },
+  {
+    "city": "Vancouver",
+    "coordinates": [
+      49.282729,
+      -123.120738
+    ],
+    "numberOfEmployees": 290
+  },
+  {
+    "city": "London",
+    "coordinates": [
+      51.507351,
+      -0.127758
+    ],
+    "numberOfEmployees": 590
+  },
+  {
+    "city": "Stockholm",
+    "coordinates": [
+      59.329323,
+      18.068581
+    ],
+    "numberOfEmployees": 289
+  },
+  {
+    "city": "Barcelona",
+    "coordinates": [
+      41.385064,
+      2.173403
+    ],
+    "numberOfEmployees": 99
+  }
+]

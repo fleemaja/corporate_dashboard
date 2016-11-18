@@ -182,7 +182,7 @@
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 20, bottom: 30, left: 50},
               width = 900 - margin.left - margin.right,
-              height = 600 - margin.top - margin.bottom;
+              height = 500 - margin.top - margin.bottom;
           // Adds the svg canvas
           var svg = d3.select(iElement[0])
               .append("svg")
@@ -212,8 +212,8 @@
           scope.render = function(data){
 
             var projection = d3.geo.mercator()
-                .center([0, 5])
-                .scale(200);
+                .center([-20, 30])
+                .scale(250);
 
             var path = d3.geo.path()
                 .projection(projection);
@@ -226,18 +226,6 @@
                 .enter()
                   .append("path")
                   .attr("d", path)
-
-            // zoom and pan
-            var zoom = d3.behavior.zoom()
-                .on("zoom",function() {
-                    g.attr("transform","translate("+
-                        d3.event.translate.join(",")+")scale("+d3.event.scale+")");
-                    g.selectAll("path")
-                        .attr("d", path.projection(projection));
-
-              });
-
-            svg.call(zoom)
 
           };
         }
