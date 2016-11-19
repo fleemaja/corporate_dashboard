@@ -59,7 +59,7 @@ rect {
 path {
   stroke: #E0E0E0;
   stroke-width: 1px;
-  fill: #636363;
+  fill: #969696;
 }
 
 .axis path,
@@ -84,4 +84,17 @@ path {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    min-width: 120px;
+    min-height: 28px;
+    padding: 7px;
+    font: 12px sans-serif;
+    background: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    pointer-events: none;
 }
