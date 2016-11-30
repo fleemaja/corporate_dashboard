@@ -11,42 +11,56 @@
     <link href="css/main.css" rel="stylesheet" type="text/css">
   </head>
 
-  <header>
-    <nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <span id="nav-title">
-          <i class="fa fa-wpexplorer" aria-hidden="true"></i> Corporate Dashboard
-        </span>
-        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/#/geospatial">Geospatial</a></li>
-          <li><a href="/#/metrics">Metrics</a></li>
-          <li><a href="/#/data">Data</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <body ng-app="corporateDashboard" ng-controller="viewController">
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <span id="nav-title">
+            <i class="fa fa-wpexplorer" aria-hidden="true"></i> Corporate Dashboard
+          </span>
+          <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: isActive('/geospatial')}" >
+              <a role="link" ng-click="setPagename('/geospatial')" ng-keyup="$event.keyCode == 13 ? setPagename('/geospatial') : null">
+                <i class="fa fa-globe" aria-hidden="true"></i> Geospatial
+              </a>
+            </li>
+            <li ng-class="{active: isActive('/metrics') || isActive('/')}" >
+              <a role="link" ng-click="setPagename('/metrics')" ng-keyup="$event.keyCode == 13 ? setPagename('/metrics') : null">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i> Metrics
+              </a>
+            </li>
+            <li ng-class="{active: isActive('/data')}" >
+              <a role="link" ng-click="setPagename('/data')" ng-keyup="$event.keyCode == 13 ? setPagename('/data') : null">
+                <i class="fa fa-table" aria-hidden="true"></i> Data
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-  <body ng-app="corporateDashboard">
-    <div ng-controller="viewController">
-      <div id="content" ng-switch on="getPagename()">
-          <div ng-switch-when="/geospatial">
-            <ng-include src="'templates/geospatial.html'"></ng-include>
-          </div>
-          <div ng-switch-when="/data">
-            <ng-include src="'templates/data.html'"></ng-include>
-          </div>
-          <div ng-switch-default>
-            <ng-include src="'templates/metrics.html'"></ng-include>
-          </div>
+    <main>
+      <div>
+        <div id="content" ng-switch on="getPagename()">
+            <div ng-switch-when="/geospatial">
+              <ng-include src="'templates/geospatial.html'"></ng-include>
+            </div>
+            <div ng-switch-when="/data">
+              <ng-include src="'templates/data.html'"></ng-include>
+            </div>
+            <div ng-switch-default>
+              <ng-include src="'templates/metrics.html'"></ng-include>
+            </div>
+        </div>
       </div>
-    </div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>

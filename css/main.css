@@ -114,6 +114,12 @@ div.tooltip {
 .navbar-nav>li {
   float: none;
 }
+.navbar-nav>li.active {
+  border-left: 10px solid lightsteelblue !important;
+}
+.navbar-nav>li>a:hover {
+  cursor: pointer;
+}
 .navbar-collapse.collapse.in{
   display:block !important;
 }
