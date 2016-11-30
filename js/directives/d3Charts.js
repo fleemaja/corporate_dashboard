@@ -181,8 +181,8 @@
         link: function(scope, iElement, iAttrs) {
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 20, bottom: 30, left: 50},
-              width = 900 - margin.left - margin.right,
-              height = 500 - margin.top - margin.bottom;
+              width = window.innerWidth - margin.left - margin.right,
+              height = window.innerHeight - margin.top - margin.bottom;
           // Adds the svg canvas
           var svg = d3.select(iElement[0])
               .append("svg")
@@ -252,7 +252,7 @@
                    .attr("r", function(d) {
                      return rscale(d['numberOfEmployees']);
                    })
-                   .style("fill", "#3498db")
+                   .style("fill", "#b0c4de")
                    .on("mouseover", function(d) {
                      div.transition()
                         .duration(200)

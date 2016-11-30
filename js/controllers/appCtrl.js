@@ -3,7 +3,6 @@
 
   angular.module('corporateDashboard.controllers')
     .controller('viewController', ['$scope', '$location', function($scope, $location) {
-        $scope.setPagename = function(path) { $location.path(path); };
         $scope.getPagename = function() { return $location.path(); }
     }])
     .controller('barCtrl', ['$scope', function($scope){

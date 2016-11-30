@@ -1,7 +1,7 @@
 body {
-  text-align: center;
-  font-family: "Helvetica", Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #555;
+  background: #77777a;
 }
 
 #content {
@@ -16,11 +16,10 @@ button {
   background: #f3f3f3;
   padding: 0px 10px;
   margin: 0px 10px;
-  box-shadow: 7px 7px 5px #aaa;
 }
 
 .active-tab {
-  background: steelblue;
+  background: lightsteelblue;
   color: white;
 }
 
@@ -31,29 +30,30 @@ button:hover {
   color: black;
 }
 
-header {
+#nav-title {
+  margin-left: 2%;
   font-size: 42px;
   font-weight: 900;
-  background: #f3f3f3;
 }
 
 .container-fluid {
   max-width: 90%;
   margin-top: 40px;
+  background: white;
 }
 
 .view-tab {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: lightsteelblue;
   stroke-width: 2px;
 }
 
 rect {
-  fill: steelblue;
+  fill: lightsteelblue;
 }
 
 path {
@@ -74,7 +74,7 @@ path {
     margin: 0 auto;
     margin-top: 40px;
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border-top: 16px solid lightsteelblue; /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -97,4 +97,23 @@ div.tooltip {
     border: 2px solid black;
     border-radius: 8px;
     pointer-events: none;
+}
+
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: block;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:block !important;
 }
