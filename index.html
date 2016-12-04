@@ -13,10 +13,10 @@
 
   <body ng-app="corporateDashboard" ng-controller="viewController">
     <header>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
           <span id="nav-title">
-            <i class="fa fa-wpexplorer" aria-hidden="true"></i> Corporate Dashboard
+            <i class="fa fa-wpexplorer" aria-hidden="true"></i> <span id="brand-text">Corporate Dashboard</span>
           </span>
           <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -24,14 +24,14 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse in">
           <ul class="nav navbar-nav">
             <li ng-class="{active: isActive('/geospatial')}" >
               <a role="link" ng-click="setPagename('/geospatial')" ng-keyup="$event.keyCode == 13 ? setPagename('/geospatial') : null">
                 <i class="fa fa-globe" aria-hidden="true"></i> Geospatial
               </a>
             </li>
-            <li ng-class="{active: isActive('/metrics') || isActive('/')}" >
+            <li ng-class="{active: isActive('/metrics') || !(isActive('/geospatial') || isActive('/data'))}" >
               <a role="link" ng-click="setPagename('/metrics')" ng-keyup="$event.keyCode == 13 ? setPagename('/metrics') : null">
                 <i class="fa fa-bar-chart" aria-hidden="true"></i> Metrics
               </a>

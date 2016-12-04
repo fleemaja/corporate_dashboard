@@ -33,7 +33,7 @@
         $scope.totalItems = $scope.objects.length;
       });
       $scope.currentPage = 1;
-      $scope.numPerPage = 10;
+      $scope.numPerPage = 11;
 
       $scope.paginate = function(value) {
         var begin, end, index;
