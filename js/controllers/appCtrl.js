@@ -27,7 +27,7 @@
       ];
     }])
     .controller('issuesCtrl', ['$scope', '$resource', function($scope, $resource) {
-      var Issue = $resource('https://api.github.com/repos/angular-ui/bootstrap/issues');
+      var Issue = $resource('https://fleemaja.github.io/corporate_dashboard/data/issues.json');
       $scope.objects = Issue.query();
       $scope.objects.$promise.then(function(){
         $scope.totalItems = $scope.objects.length;

@@ -68,8 +68,8 @@ path {
 
 .loader {
     margin: 0 auto;
-    margin-top: 40px;
     border: 16px solid #f3f3f3; /* Light grey */
+    margin-top: 33%;
     border-top: 16px solid lightsteelblue; /* Blue */
     border-radius: 50%;
     width: 120px;

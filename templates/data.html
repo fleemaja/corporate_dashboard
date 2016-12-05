@@ -5,12 +5,16 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
+          <th>Date</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="obj in objects | filter : paginate">
           <td>{{obj.id}}</td>
           <td>{{obj.title}}</td>
+          <td>{{obj.created_at | date:'MM-dd-yyyy'}}</td>
+          <td>{{obj.state}}</td>
         </tr>
       </tbody>
     </table>
