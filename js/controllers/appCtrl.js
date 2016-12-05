@@ -43,6 +43,10 @@
         return (begin <= index && index < end);
       };
     }])
+    .controller('citiesCtrl', ['$scope', '$resource', function($scope, $resource) {
+      var City = $resource('https://fleemaja.github.io/corporate_dashboard/data/cities.json');
+      $scope.objects = City.query();
+    }])
     .controller('MainCtrl', ['$scope', '$http', function($scope, $http){
       $http.get('https://gist.githubusercontent.com/abenrob/787723ca91772591b47e/raw/8a7f176072d508218e120773943b595c998991be/world-50m.json').success(function(data){
         $scope.mapData = data;

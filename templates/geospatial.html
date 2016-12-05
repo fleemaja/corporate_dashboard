@@ -6,3 +6,22 @@
     <location-map data="mapData"></location-map>
   </div>
 </div>
+
+<div class="container-fluid">
+  <div ng-controller="citiesCtrl">
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Number of Employees</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="obj in objects">
+          <td>{{obj.city}}</td>
+          <td>{{obj.numberOfEmployees}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
