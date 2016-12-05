@@ -30,6 +30,14 @@ button {
   background: white;
 }
 
+#map {
+  padding: 0;
+}
+
+svg {
+  width: 100%;
+}
+
 .view-tab {
   cursor: pointer;
 }

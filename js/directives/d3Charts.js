@@ -180,17 +180,15 @@
         },
         link: function(scope, iElement, iAttrs) {
           // Set the dimensions of the canvas / graph
-          var margin = {top: 30, right: 20, bottom: 30, left: 50},
-              width = window.innerWidth - margin.left - margin.right,
-              height = window.innerHeight - margin.top - margin.bottom;
+          var width = parseInt(d3.select('#map').style('width')),
+              mapRatio = 0.5,
+              height = width * mapRatio;
           // Adds the svg canvas
           var svg = d3.select(iElement[0])
               .append("svg")
-                  .attr("width", width + margin.left + margin.right)
-                  .attr("height", height + margin.top + margin.bottom)
+                  .attr("width", width)
+                  .attr("height", height)
               .append("g")
-                  .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
 
           // on window resize, re-render d3 canvas
           window.onresize = function() {
@@ -212,8 +210,8 @@
           scope.render = function(data){
 
             var projection = d3.geo.mercator()
-                .center([-20, 30])
-                .scale(250);
+                .translate([4*width/5, height + (height/8)])
+                .scale(width/3);
 
             var path = d3.geo.path()
                 .projection(projection);
@@ -234,9 +232,11 @@
 
             // load and display the meteor strikes
             d3.json("https://fleemaja.github.io/corporate_dashboard/data/cities.json", function(error, mData) {
+                var rangeVals = width < 500 ? [5, 15] : [10, 30];
+                rangeVals = width < 1200 ? rangeVals : [20, 50];
                 var rscale = d3.scale.linear()
                   .domain([1, 700])
-                  .range([10,30])
+                  .range(rangeVals);
 
                 g.selectAll("circle")
                    .data(mData)
