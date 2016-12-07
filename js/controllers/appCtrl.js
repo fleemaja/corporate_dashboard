@@ -10,21 +10,14 @@
         };
     }])
     .controller('barCtrl', ['$scope', function($scope){
+      var BarData = $resource('https://fleemaja.github.io/corporate_dashboard/data/barChart.json');
       $scope.title = "barCtrl";
-      $scope.d3Data = [
-        {title: "Greg", score:12},
-        {title: "Ari", score:43},
-        {title: "Loser", score: 87}
-      ];
+      $scope.d3Data = BarChart.query();
     }])
     .controller('lineCtrl', ['$scope', function($scope){
+      var LineData = $resource('https://fleemaja.github.io/corporate_dashboard/data/lineChart.json');
       $scope.title = "lineCtrl";
-      $scope.d3Data = [
-        {title: 1, score:0},
-        {title: 2, score:43},
-        {title: 3, score:87},
-        {title: 400, score:333}
-      ];
+      $scope.d3Data = LineData.query();
     }])
     .controller('issuesCtrl', ['$scope', '$resource', function($scope, $resource) {
       var Issue = $resource('https://fleemaja.github.io/corporate_dashboard/data/issues.json');
