@@ -1,25 +1,36 @@
-<div class="container-fluid">
-  <div ng-controller="issuesCtrl">
-    <table class="table table-striped table-hover table-bordered">
+<div class="bs-component" ng-controller="issuesCtrl">
+  <div class="container-fluid" id="search-bar">
+    <form>
+        <div class="form-group">
+            <input type="text" ng-model="search" class="form-control" aria-label="Search" placeholder="Search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+    </form>
+  </div>
+  <div class="container-fluid">
+    <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Title</th>
-          <th>Date</th>
-          <th>Status</th>
+          <th class="sort-select" ng-click="sort('created_at')">Date
+            <i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+          <th class="sort-select" ng-click="sort('state')">Status
+            <i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="obj in objects | filter : paginate">
-          <td>{{obj.id}}</td>
+        <tr dir-paginate="obj in objects|filter:search|orderBy:sortType:sortReverse|itemsPerPage:11">
           <td>{{obj.title}}</td>
           <td>{{obj.created_at | date:'MM-dd-yyyy'}}</td>
           <td>{{obj.state}}</td>
         </tr>
       </tbody>
     </table>
-    <pagination total-items="totalItems" ng-model="currentPage"
-      max-size="11" items-per-page="numPerPage" class="pagination-sm">
-    </pagination>
+    <dir-pagination-controls
+       max-size="5"
+       direction-links="true">
+    </dir-pagination-controls>
   </div>
 </div>

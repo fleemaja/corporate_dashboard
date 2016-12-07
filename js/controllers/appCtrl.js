@@ -32,16 +32,14 @@
       $scope.objects.$promise.then(function(){
         $scope.totalItems = $scope.objects.length;
       });
-      $scope.currentPage = 1;
-      $scope.numPerPage = 11;
+      $scope.sortType     = 'created_at'; // set the default sort type
+      $scope.sortReverse  = true;  // set the default sort order
+      $scope.searchData   = '';     // set the default search/filter term
 
-      $scope.paginate = function(value) {
-        var begin, end, index;
-        begin = ($scope.currentPage - 1) * $scope.numPerPage;
-        end = begin + $scope.numPerPage;
-        index = $scope.objects.indexOf(value);
-        return (begin <= index && index < end);
-      };
+      $scope.sort = function(sortType){
+        $scope.sortType = sortType;
+        $scope.sortReverse = !$scope.sortReverse; //if true make it false and vice versa
+      }
     }])
     .controller('citiesCtrl', ['$scope', '$resource', function($scope, $resource) {
       var City = $resource('https://fleemaja.github.io/corporate_dashboard/data/cities.json');

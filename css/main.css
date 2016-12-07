@@ -66,10 +66,32 @@ path {
     shape-rendering: crispEdges;
 }
 
+th.sort-select:hover {
+  cursor: pointer;
+}
+
+.container-fluid {
+  border-radius: 5px;
+}
+
+#search-bar {
+  padding-top: 15px;
+}
+
+input[type="text"] {
+  width: 50%;
+  display: inline;
+}
+
+.fa-search {
+  font-size: 28px;
+  vertical-align: middle;
+}
+
 .loader {
     margin: 0 auto;
     border: 16px solid #f3f3f3; /* Light grey */
-    margin-top: 33%;
+    margin-top: 15%;
     border-top: 16px solid lightsteelblue; /* Blue */
     border-radius: 50%;
     width: 120px;

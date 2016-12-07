@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
   var corporateDashboard = angular.module('corporateDashboard',
-      ['ngAnimate', 'ui.bootstrap', 'ngResource',
+      ['ngAnimate', 'ui.bootstrap', 'ngResource', 'angularUtils.directives.dirPagination',
       'corporateDashboard.controllers', 'corporateDashboard.directives']
     );
 
