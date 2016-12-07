@@ -9,12 +9,12 @@
             return route === $location.path();
         };
     }])
-    .controller('barCtrl', ['$scope', function($scope){
+    .controller('barCtrl', ['$scope', '$resource', function($scope, $resource){
       var BarData = $resource('https://fleemaja.github.io/corporate_dashboard/data/barChart.json');
       $scope.title = "barCtrl";
-      $scope.d3Data = BarChart.query();
+      $scope.d3Data = BarData.query();
     }])
-    .controller('lineCtrl', ['$scope', function($scope){
+    .controller('lineCtrl', ['$scope', '$resource', function($scope, $resource){
       var LineData = $resource('https://fleemaja.github.io/corporate_dashboard/data/lineChart.json');
       $scope.title = "lineCtrl";
       $scope.d3Data = LineData.query();
