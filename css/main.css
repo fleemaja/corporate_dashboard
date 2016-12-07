@@ -44,18 +44,18 @@ svg {
 
 .line {
   fill: none;
-  stroke: lightsteelblue;
+  stroke: steelblue;
   stroke-width: 2px;
 }
 
 rect {
-  fill: lightsteelblue;
+  fill: steelblue;
 }
 
 path {
   stroke: #E0E0E0;
   stroke-width: 1px;
-  fill: #969696;
+  fill: #969996;
 }
 
 .axis path,
@@ -80,19 +80,30 @@ th.sort-select:hover {
 
 input[type="text"] {
   width: 50%;
+  height: 48px;
+  font-size: 24px;
+  line-height: 24px;
+  min-width: 280px;
   display: inline;
 }
 
+th {
+  height: 48px;
+}
+
+td {
+  min-width: 90px;
+}
+
 .fa-search {
-  font-size: 28px;
-  vertical-align: middle;
+  font-size: 32px;
 }
 
 .loader {
     margin: 0 auto;
-    border: 16px solid #f3f3f3; /* Light grey */
+    border: 16px solid #d3d3d3; /* Light grey */
     margin-top: 15%;
-    border-top: 16px solid lightsteelblue; /* Blue */
+    border-top: 16px solid steelblue; /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -138,7 +149,7 @@ div.tooltip {
   float: none;
 }
 .navbar-nav>li.active {
-  border-left: 10px solid lightsteelblue !important;
+  border-left: 10px solid steelblue !important;
 }
 .navbar-nav>li>a:hover {
   cursor: pointer;

@@ -252,7 +252,7 @@
                    .attr("r", function(d) {
                      return rscale(d['numberOfEmployees']);
                    })
-                   .style("fill", "#b0c4de")
+                   .style("fill", "#4682b4")
                    .on("mouseover", function(d) {
                      div.transition()
                         .duration(200)
