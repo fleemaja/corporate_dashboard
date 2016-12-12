@@ -52,6 +52,9 @@
           var y = d3.scale.linear()
               .range([height, 0]);
 
+          x.domain(data.map(function(d) { return d.date; }));
+          y.domain([0, d3.max(data, function(d) { return d.numIssues; })]);
+
           var xAxis = d3.svg.axis()
               .scale(x)
               .orient("bottom");
@@ -59,9 +62,6 @@
           var yAxis = d3.svg.axis()
               .scale(y)
               .orient("left");
-
-          x.domain(data.map(function(d) { return d.date; }));
-          y.domain([0, d3.max(data, function(d) { return d.numIssues; })]);
 
           chart.append("g")
               .attr("class", "x axis")
@@ -76,6 +76,7 @@
               .data(data)
             .enter().append("rect")
               .attr("class", "bar")
+              .style("font-size", "8px")
               .attr("x", function(d) { return x(d.date); })
               .attr("y", height)
               .attr("height", 0)
@@ -90,7 +91,7 @@
             .attr("y", 0 - (margin.top / 2))
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
-            .text("Number of Reported Issues Over Time");
+            .text("Reported Issues Over Time");
 
           function type(d) {
             d.value = +d.value; // coerce to number
@@ -112,7 +113,7 @@
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 40, bottom: 30, left: 40},
               width = parseInt(d3.select('#line-chart').style('width')) - margin.left - margin.right,
-              mapRatio = width > 500 ? 0.3 : 1,
+              mapRatio = width > 500 ? 0.5 : 1,
               height = (width * mapRatio) - margin.top - margin.bottom;
           // Adds the svg canvas
           var svg = d3.select(iElement[0])
