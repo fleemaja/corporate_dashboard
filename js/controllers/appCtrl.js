@@ -15,9 +15,7 @@
       $scope.d3Data = BarData.query();
     }])
     .controller('lineCtrl', ['$scope', '$resource', function($scope, $resource){
-      var LineData = $resource('https://fleemaja.github.io/corporate_dashboard/data/lineChart.json');
       $scope.title = "lineCtrl";
-      $scope.d3Data = LineData.query();
     }])
     .controller('issuesCtrl', ['$scope', '$resource', function($scope, $resource) {
       var Issue = $resource('https://fleemaja.github.io/corporate_dashboard/data/issues.json');
@@ -37,6 +35,14 @@
     .controller('citiesCtrl', ['$scope', '$resource', function($scope, $resource) {
       var City = $resource('https://fleemaja.github.io/corporate_dashboard/data/cities.json');
       $scope.objects = City.query();
+    }])
+    .controller('openCtrl', ['$scope', '$resource', function($scope, $resource) {
+      var Issues = $resource('https://fleemaja.github.io/corporate_dashboard/data/issues.json');
+      $scope.objects = Issues.query();
+      $scope.objects.$promise.then(function(){
+        $scope.objs = $scope.objects.filter(function(obj) { return obj.state === 'open'});
+        $scope.openNum = $scope.objs.length;
+      });
     }])
     .controller('MainCtrl', ['$scope', '$http', function($scope, $http){
       $http.get('https://gist.githubusercontent.com/abenrob/787723ca91772591b47e/raw/8a7f176072d508218e120773943b595c998991be/world-50m.json').success(function(data){

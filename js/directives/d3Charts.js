@@ -60,8 +60,8 @@
               .scale(y)
               .orient("left");
 
-          x.domain(data.map(function(d) { return d.title; }));
-          y.domain([0, d3.max(data, function(d) { return d.score; })]);
+          x.domain(data.map(function(d) { return d.date; }));
+          y.domain([0, d3.max(data, function(d) { return d.numIssues; })]);
 
           chart.append("g")
               .attr("class", "x axis")
@@ -76,13 +76,13 @@
               .data(data)
             .enter().append("rect")
               .attr("class", "bar")
-              .attr("x", function(d) { return x(d.title); })
+              .attr("x", function(d) { return x(d.date); })
               .attr("y", height)
               .attr("height", 0)
               .transition()
 			        .duration(500)
-              .attr("y", function(d) { return y(d.score); })
-              .attr("height", function(d) { return height - y(d.score); })
+              .attr("y", function(d) { return y(d.numIssues); })
+              .attr("height", function(d) { return height - y(d.numIssues); })
               .attr("width", x.rangeBand());
 
           chart.append("text")

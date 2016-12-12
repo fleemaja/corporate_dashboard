@@ -1,8 +1,14 @@
 [
-  {"title": "Greg", "score":12},
-  {"title": "Gandalf", "score": 93},
-  {"title": "Ari", "score":43},
-  {"title": "Jimmy", "score": 51},
-  {"title": "Bilbo", "score": 66},
-  {"title": "Lebron James", "score": 99}
+  {"date": "Jan", "numIssues": 12},
+  {"date": "Feb", "numIssues": 23},
+  {"date": "Mar", "numIssues": 43},
+  {"date": "Apr", "numIssues": 51},
+  {"date": "May", "numIssues": 32},
+  {"date": "Jun", "numIssues": 78},
+  {"date": "Jul", "numIssues": 22},
+  {"date": "Aug", "numIssues": 17},
+  {"date": "Sep", "numIssues": 34},
+  {"date": "Oct", "numIssues": 45},
+  {"date": "Nov", "numIssues": 88},
+  {"date": "Dec", "numIssues": 99}
 ]
