@@ -1,5 +1,8 @@
 [
   {"title": "Greg", "score":12},
+  {"title": "Gandalf", "score": 93},
   {"title": "Ari", "score":43},
-  {"title": "Loser", "score": 87}
+  {"title": "Jimmy", "score": 51},
+  {"title": "Bilbo", "score": 66},
+  {"title": "Lebron James", "score": 99}
 ]

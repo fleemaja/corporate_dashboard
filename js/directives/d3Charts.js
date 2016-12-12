@@ -13,9 +13,19 @@
         onClick: "&"
       },
       link: function(scope, iElement, iAttrs) {
-        var svg = d3.select(iElement[0])
+        // Set the dimensions of the canvas / graph
+        var margin = {top: 30, right: 40, bottom: 30, left: 40},
+            width = parseInt(d3.select('#charts').style('width')) - margin.left - margin.right,
+            mapRatio = width > 500 ? 0.5 : 1,
+            height = (width * mapRatio) - margin.top - margin.bottom;
+        // Adds the svg canvas
+        var chart = d3.select(iElement[0])
             .append("svg")
-            .attr("width", "100%");
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
 
         // on window resize, re-render d3 canvas
         window.onresize = function() {
@@ -36,45 +46,45 @@
         // define render function
         scope.render = function(data){
 
-          // setup variables
-          var width, height, max;
-          width = d3.select(iElement[0])[0][0].offsetWidth - 20;
-            // 20 is for margins and can be changed
-          height = scope.data.length * 35;
-            // 35 = 30(bar height) + 5(margin between bars)
-          max = 98;
-            // this can also be found dynamically when the data is not static
-            // max = Math.max.apply(Math, _.map(data, ((val)-> val.count)))
+          var x = d3.scale.ordinal()
+              .rangeRoundBands([0, width], .1);
 
-          // set the height based on the calculations above
-          svg.attr('height', height);
+          var y = d3.scale.linear()
+              .range([height, 0]);
 
-          //create the rectangles for the bar chart
-          svg.selectAll("rect")
-            .data(data)
-            .enter()
-              .append("rect")
-              .attr("height", 30) // height of each bar
-              .attr("width", 0) // initial width of 0 for transition
-              .attr("x", 10) // half of the 20 side margin specified above
-              .attr("y", function(d, i){
-                return i * 35;
-              }) // height + margin between bars
-              .transition()
-                .duration(1000) // time of duration
-                .attr("width", function(d){
-                  return d.score/(max/width);
-                }); // width based on scale
+          var xAxis = d3.svg.axis()
+              .scale(x)
+              .orient("bottom");
 
-          svg.selectAll("text")
-            .data(data)
-            .enter()
-              .append("text")
-              .attr("fill", "#fff")
-              .attr("y", function(d, i){return i * 35 + 22;})
-              .attr("x", 15)
-              .text(function(d){return d.title;});
+          var yAxis = d3.svg.axis()
+              .scale(y)
+              .orient("left");
 
+          x.domain(data.map(function(d) { return d.title; }));
+          y.domain([0, d3.max(data, function(d) { return d.score; })]);
+
+          chart.append("g")
+              .attr("class", "x axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(xAxis);
+
+          chart.append("g")
+              .attr("class", "y axis")
+              .call(yAxis);
+
+          chart.selectAll(".bar")
+              .data(data)
+            .enter().append("rect")
+              .attr("class", "bar")
+              .attr("x", function(d) { return x(d.title); })
+              .attr("y", function(d) { return y(d.score); })
+              .attr("height", function(d) { return height - y(d.score); })
+              .attr("width", x.rangeBand());
+
+          function type(d) {
+            d.value = +d.value; // coerce to number
+            return d;
+          }
         };
       }
     };
@@ -91,7 +101,7 @@
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 40, bottom: 30, left: 40},
               width = parseInt(d3.select('#charts').style('width')) - margin.left - margin.right,
-              mapRatio = 0.5,
+              mapRatio = width > 500 ? 0.3 : 1,
               height = (width * mapRatio) - margin.top - margin.bottom;
           // Adds the svg canvas
           var svg = d3.select(iElement[0])
