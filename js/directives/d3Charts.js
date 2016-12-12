@@ -76,7 +76,6 @@
               .data(data)
             .enter().append("rect")
               .attr("class", "bar")
-              .style("font-size", "8px")
               .attr("x", function(d) { return x(d.date); })
               .attr("y", height)
               .attr("height", 0)
