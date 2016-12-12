@@ -15,7 +15,7 @@
       link: function(scope, iElement, iAttrs) {
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 40, bottom: 30, left: 40},
-            width = parseInt(d3.select('#charts').style('width')) - margin.left - margin.right,
+            width = parseInt(d3.select('#bar-chart').style('width')) - margin.left - margin.right,
             mapRatio = width > 500 ? 0.5 : 1,
             height = (width * mapRatio) - margin.top - margin.bottom;
         // Adds the svg canvas
@@ -77,9 +77,20 @@
             .enter().append("rect")
               .attr("class", "bar")
               .attr("x", function(d) { return x(d.title); })
+              .attr("y", height)
+              .attr("height", 0)
+              .transition()
+			        .duration(500)
               .attr("y", function(d) { return y(d.score); })
               .attr("height", function(d) { return height - y(d.score); })
               .attr("width", x.rangeBand());
+
+          chart.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .text("Number of Reported Issues Over Time");
 
           function type(d) {
             d.value = +d.value; // coerce to number
@@ -100,7 +111,7 @@
         link: function(scope, iElement, iAttrs) {
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 40, bottom: 30, left: 40},
-              width = parseInt(d3.select('#charts').style('width')) - margin.left - margin.right,
+              width = parseInt(d3.select('#line-chart').style('width')) - margin.left - margin.right,
               mapRatio = width > 500 ? 0.3 : 1,
               height = (width * mapRatio) - margin.top - margin.bottom;
           // Adds the svg canvas
@@ -176,6 +187,13 @@
                 svg.append("g")
                     .attr("class", "y axis")
                     .call(yAxis);
+
+                svg.append("text")
+                  .attr("x", (width / 2))
+                  .attr("y", 0 - (margin.top / 2))
+                  .attr("text-anchor", "middle")
+                  .style("font-size", "16px")
+                  .text("Paying Customers Over Time");
 
             });
 

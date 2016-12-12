@@ -18,6 +18,11 @@ button {
   color: white;
 }
 
+#line-chart,
+#bar-chart {
+  padding-top: 20px;
+}
+
 #nav-title {
   margin-left: 2%;
   font-size: 42px;
