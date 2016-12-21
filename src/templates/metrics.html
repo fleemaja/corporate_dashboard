@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="container-fluid">
-  <div id="open-issues" ng-controller="openCtrl">
+  <div id="open-issues" ng-controller="openIssuesCtrl">
     <strong id="open-info">{{openNum}} Issues Open</strong>
     <a role="link" ng-click="setPagename('/data')" ng-keyup="$event.keyCode == 13 ? setPagename('/data') : null">
       <i class="fa fa-table" aria-hidden="true"></i> See open issues
