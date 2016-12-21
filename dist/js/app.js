@@ -1,1 +1,0 @@
-!function(o){"use strict";o.module("corporateDashboard",["ngAnimate","ui.bootstrap","ngResource","angularUtils.directives.dirPagination","corporateDashboard.controllers","corporateDashboard.directives"]);o.module("d3",[]),o.module("corporateDashboard.controllers",[]),o.module("corporateDashboard.directives",["d3"])}(window.angular);
