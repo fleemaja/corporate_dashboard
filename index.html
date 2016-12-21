@@ -52,13 +52,13 @@
       <div>
         <div id="content" ng-switch on="getPagename()">
             <div ng-switch-when="/geospatial">
-              <ng-include src="'templates/geospatial.html'"></ng-include>
+              <ng-include src="'src/templates/geospatial.html'"></ng-include>
             </div>
             <div ng-switch-when="/data">
-              <ng-include src="'templates/data.html'"></ng-include>
+              <ng-include src="'src/templates/data.html'"></ng-include>
             </div>
             <div ng-switch-default>
-              <ng-include src="'templates/metrics.html'"></ng-include>
+              <ng-include src="'src/templates/metrics.html'"></ng-include>
             </div>
         </div>
       </div>
