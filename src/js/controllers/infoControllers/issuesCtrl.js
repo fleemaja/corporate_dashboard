@@ -2,12 +2,21 @@
   'use strict';
 
   angular.module('corporateDashboard.controllers')
-    .controller('issuesCtrl', ['$scope', 'issuesService', function($scope, issuesService) {
+    .controller('issuesCtrl', ['$scope', '$timeout', '$location', 'issuesService', function($scope, $timeout, $location, issuesService) {
       var Issue = issuesService.getIssuesData();
-      $scope.objects = Issue.query();
-      $scope.objects.$promise.then(function(){
-        $scope.totalItems = $scope.objects.length;
-      });
+
+      (function tick() {
+        $scope.objects = Issue.query(function(){
+            if ($location.path() != '/geospatial') {
+              $timeout(tick, 30000);
+            }
+        });
+
+        $scope.objects.$promise.then(function(){
+          $scope.totalItems = $scope.objects.length;
+        });
+      })();
+
       $scope.customerName = "Gandalf";
       $scope.customerEmail = "gandalf.grey@gmail.com";
       $scope.sortType     = 'created_at'; // set the default sort type
