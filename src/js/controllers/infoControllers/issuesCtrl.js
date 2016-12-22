@@ -8,6 +8,8 @@
       $scope.objects.$promise.then(function(){
         $scope.totalItems = $scope.objects.length;
       });
+      $scope.customerName = "Gandalf";
+      $scope.customerEmail = "gandalf.grey@gmail.com";
       $scope.sortType     = 'created_at'; // set the default sort type
       $scope.sortReverse  = true;  // set the default sort order
       $scope.searchData   = '';     // set the default search/filter term

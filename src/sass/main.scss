@@ -25,6 +25,14 @@ body {
     padding-top: 20px;
   }
 
+  .container-table {
+    margin: 0 5%;
+    margin-top: 40px;
+    background: white;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+
   .container-fluid {
     max-width: 90%;
     margin-top: 40px;
