@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('corporateDashboard.controllers')
-    .controller('issuesCtrl', ['$scope', '$resource', function($scope, $resource) {
-      var Issue = $resource('https://fleemaja.github.io/corporate_dashboard/data/issues.json');
+    .controller('issuesCtrl', ['$scope', 'issuesService', function($scope, issuesService) {
+      var Issue = issuesService.getIssuesData();
       $scope.objects = Issue.query();
       $scope.objects.$promise.then(function(){
         $scope.totalItems = $scope.objects.length;

@@ -29,6 +29,7 @@
         window.onresize = function() {
           return scope.$apply();
         };
+        
         scope.$watch(function(){
             return angular.element(window)[0].innerWidth;
           }, function(){
@@ -37,64 +38,66 @@
         );
 
         // watch for data changes and re-render
-        scope.$watch('data', function(newVals, oldVals) {
-          return scope.render(newVals);
+        scope.$watch('data', function() {
+          return scope.render(scope.data);
         }, true);
 
         // define render function
         scope.render = function(data){
 
-          var x = d3.scale.ordinal()
-              .rangeRoundBands([0, width], .1);
+          if (data) {
+            var x = d3.scale.ordinal()
+                .rangeRoundBands([0, width], .1);
 
-          var y = d3.scale.linear()
-              .range([height, 0]);
+            var y = d3.scale.linear()
+                .range([height, 0]);
 
-          x.domain(data.map(function(d) { return d.date; }));
-          y.domain([0, d3.max(data, function(d) { return d.numIssues; })]);
+            x.domain(data.map(function(d) { return d.date; }));
+            y.domain([0, d3.max(data, function(d) { return d.numIssues; })]);
 
-          var xAxis = d3.svg.axis()
-              .scale(x)
-              .orient("bottom");
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
 
-          var yAxis = d3.svg.axis()
-              .scale(y)
-              .orient("left");
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
 
-          chart.append("g")
-              .attr("class", "x axis")
-              .attr("transform", "translate(0," + height + ")")
-              .call(xAxis);
+            chart.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
 
-          chart.append("g")
-              .attr("class", "y axis")
-              .call(yAxis);
+            chart.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
 
-          chart.selectAll(".bar")
-              .data(data)
-            .enter().append("rect")
-              .attr("class", "bar")
-              .attr("x", function(d) { return x(d.date); })
-              .attr("y", height)
-              .attr("height", 0)
-              .transition()
-			        .duration(500)
-              .attr("y", function(d) { return y(d.numIssues); })
-              .attr("height", function(d) { return height - y(d.numIssues); })
-              .attr("width", x.rangeBand());
+            chart.selectAll(".bar")
+                .data(data)
+              .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d.date); })
+                .attr("y", height)
+                .attr("height", 0)
+                .transition()
+  			        .duration(500)
+                .attr("y", function(d) { return y(d.numIssues); })
+                .attr("height", function(d) { return height - y(d.numIssues); })
+                .attr("width", x.rangeBand());
 
-          chart.append("text")
-            .attr("x", (width / 2))
-            .attr("y", 0 - (margin.top / 2))
-            .attr("text-anchor", "middle")
-            .style("font-size", "16px")
-            .text("Reported Issues Over Time");
+            chart.append("text")
+              .attr("x", (width / 2))
+              .attr("y", 0 - (margin.top / 2))
+              .attr("text-anchor", "middle")
+              .style("font-size", "16px")
+              .text("Reported Issues Over Time");
 
-          function type(d) {
-            d.value = +d.value; // coerce to number
-            return d;
-          }
-        };
+            function type(d) {
+              d.value = +d.value; // coerce to number
+              return d;
+            }
+          };
+        }
       }
     };
   }])

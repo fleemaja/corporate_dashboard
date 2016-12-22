@@ -5,6 +5,5 @@
     .controller('lineCtrl', ['$scope', '$resource', function($scope, $resource){
       $scope.title = "lineCtrl";
     }])
-
-
+    
 }());
