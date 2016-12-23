@@ -62,7 +62,7 @@
                     .attr("d", path)
 
               // load and display the meteor strikes
-              d3.json("https://fleemaja.github.io/corporate_dashboard/data/cities.json", function(error, mData) {
+              d3.json("./data/cities.json", function(error, mData) {
                   var rangeVals = width < 500 ? [5, 15] : [10, 30];
                   rangeVals = width < 1200 ? rangeVals : [20, 50];
                   var rscale = d3.scale.linear()
